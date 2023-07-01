@@ -1,0 +1,4 @@
+(library
+ (name local_deps)
+ (libraries graphics)
+)
