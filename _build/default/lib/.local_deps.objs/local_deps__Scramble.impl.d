@@ -1,1 +1,1 @@
-lib/scramble.ml: Array List Random Types
+lib/scramble.ml: Array List Random Simulator Types

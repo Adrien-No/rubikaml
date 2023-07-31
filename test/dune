@@ -1,4 +1,4 @@
-(test
- (name rubikaml)
+(tests
+ (names rubikaml roux_pattern)
  (libraries local_deps)
 )

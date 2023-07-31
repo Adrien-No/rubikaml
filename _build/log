@@ -1,28 +1,29 @@
-# dune test
+# dune build --profile release
 # OCAMLPARAM: unset
 # Shared cache: disabled
 # Workspace root: /home/adriroot/Nextcloud/info/prog/rubikaml
 # Auto-detected concurrency: 16
-$ /usr/bin/ocamlc.opt -config > /tmp/dune_a12aa4_output
+$ /home/adriroot/.opam/default/bin/ocamlc.opt -config > /tmp/dune_32a001_output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
-#  ; profile = Dev
+#  ; profile = Release
 #  ; merlin = true
 #  ; for_host = None
 #  ; fdo_target_exe = None
 #  ; build_dir = In_build_dir "default"
 #  ; toplevel_path = Some External "/home/adriroot/.opam/default/lib/toplevel"
-#  ; ocaml_bin = External "/usr/bin"
+#  ; ocaml_bin = External "/home/adriroot/.opam/default/bin"
 #  ; ocaml = Ok External "/home/adriroot/.opam/default/bin/ocaml"
-#  ; ocamlc = External "/usr/bin/ocamlc.opt"
-#  ; ocamlopt = Ok External "/usr/bin/ocamlopt.opt"
-#  ; ocamldep = Ok External "/usr/bin/ocamldep.opt"
-#  ; ocamlmklib = Ok External "/usr/bin/ocamlmklib.opt"
+#  ; ocamlc = External "/home/adriroot/.opam/default/bin/ocamlc.opt"
+#  ; ocamlopt = Ok External "/home/adriroot/.opam/default/bin/ocamlopt.opt"
+#  ; ocamldep = Ok External "/home/adriroot/.opam/default/bin/ocamldep.opt"
+#  ; ocamlmklib = Ok External "/home/adriroot/.opam/default/bin/ocamlmklib.opt"
 #  ; env =
 #      map
-#        { "DUNE_OCAML_HARDCODED" : "/home/adriroot/.opam/default/lib"
-#        ; "DUNE_OCAML_STDLIB" : "/usr/lib/ocaml"
+#        { "DUNE_OCAML_HARDCODED" :
+#            "/home/adriroot/.opam/default/lib/ocaml:/home/adriroot/.opam/default/lib"
+#        ; "DUNE_OCAML_STDLIB" : "/home/adriroot/.opam/default/lib/ocaml"
 #        ; "DUNE_SOURCEROOT" : "/home/adriroot/Nextcloud/info/prog/rubikaml"
 #        ; "INSIDE_DUNE" :
 #            "/home/adriroot/Nextcloud/info/prog/rubikaml/_build/default"
@@ -35,91 +36,54 @@ $ /usr/bin/ocamlc.opt -config > /tmp/dune_a12aa4_output
 #        ; "OCAML_COLOR" : "always"
 #        ; "OPAMCOLOR" : "always"
 #        }
-#  ; findlib_paths = [ External "/home/adriroot/.opam/default/lib" ]
+#  ; findlib_paths =
+#      [ External "/home/adriroot/.opam/default/lib/ocaml"
+#      ; External "/home/adriroot/.opam/default/lib"
+#      ]
 #  ; arch_sixtyfour = true
 #  ; natdynlink_supported = true
 #  ; supports_shared_libraries = true
 #  ; ocaml_config =
-#      { version = "4.13.1"
-#      ; standard_library_default = "/usr/lib/ocaml"
-#      ; standard_library = "/usr/lib/ocaml"
+#      { version = "5.0.0"
+#      ; standard_library_default = "/home/adriroot/.opam/default/lib/ocaml"
+#      ; standard_library = "/home/adriroot/.opam/default/lib/ocaml"
 #      ; standard_runtime = "the_standard_runtime_variable_was_deleted"
 #      ; ccomp_type = "cc"
-#      ; c_compiler = "x86_64-linux-gnu-gcc"
+#      ; c_compiler = "gcc"
 #      ; ocamlc_cflags =
-#          [ "-O2"
-#          ; "-fno-strict-aliasing"
-#          ; "-fwrapv"
-#          ; "-pthread"
-#          ; "-fPIC"
-#          ; "-g"
-#          ; "-O2"
-#          ; "-ffile-prefix-map=/build/ocaml-SC7b9w/ocaml-4.13.1=."
-#          ; "-fstack-protector-strong"
-#          ; "-Wformat"
-#          ; "-Werror=format-security"
-#          ]
-#      ; ocamlc_cppflags =
-#          [ "-D_FILE_OFFSET_BITS=64"; "-Wdate-time"; "-D_FORTIFY_SOURCE=2" ]
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread"; "-fPIC" ]
+#      ; ocamlc_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
 #      ; ocamlopt_cflags =
-#          [ "-O2"
-#          ; "-fno-strict-aliasing"
-#          ; "-fwrapv"
-#          ; "-pthread"
-#          ; "-fPIC"
-#          ; "-g"
-#          ; "-O2"
-#          ; "-ffile-prefix-map=/build/ocaml-SC7b9w/ocaml-4.13.1=."
-#          ; "-fstack-protector-strong"
-#          ; "-Wformat"
-#          ; "-Werror=format-security"
-#          ]
-#      ; ocamlopt_cppflags =
-#          [ "-D_FILE_OFFSET_BITS=64"; "-Wdate-time"; "-D_FORTIFY_SOURCE=2" ]
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread"; "-fPIC" ]
+#      ; ocamlopt_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
 #      ; bytecomp_c_compiler =
-#          [ "x86_64-linux-gnu-gcc"
+#          [ "gcc"
 #          ; "-O2"
 #          ; "-fno-strict-aliasing"
 #          ; "-fwrapv"
 #          ; "-pthread"
 #          ; "-fPIC"
-#          ; "-g"
-#          ; "-O2"
-#          ; "-ffile-prefix-map=/build/ocaml-SC7b9w/ocaml-4.13.1=."
-#          ; "-fstack-protector-strong"
-#          ; "-Wformat"
-#          ; "-Werror=format-security"
 #          ; "-D_FILE_OFFSET_BITS=64"
-#          ; "-Wdate-time"
-#          ; "-D_FORTIFY_SOURCE=2"
 #          ]
 #      ; bytecomp_c_libraries = [ "-lm"; "-lpthread" ]
 #      ; native_c_compiler =
-#          [ "x86_64-linux-gnu-gcc"
+#          [ "gcc"
 #          ; "-O2"
 #          ; "-fno-strict-aliasing"
 #          ; "-fwrapv"
 #          ; "-pthread"
 #          ; "-fPIC"
-#          ; "-g"
-#          ; "-O2"
-#          ; "-ffile-prefix-map=/build/ocaml-SC7b9w/ocaml-4.13.1=."
-#          ; "-fstack-protector-strong"
-#          ; "-Wformat"
-#          ; "-Werror=format-security"
 #          ; "-D_FILE_OFFSET_BITS=64"
-#          ; "-Wdate-time"
-#          ; "-D_FORTIFY_SOURCE=2"
 #          ]
-#      ; native_c_libraries = [ "-lm" ]
-#      ; native_pack_linker = [ "x86_64-linux-gnu-ld"; "-r"; "-o" ]
+#      ; native_c_libraries = [ "-lm"; "-lpthread" ]
+#      ; native_pack_linker = [ "ld"; "-r"; "-o" ]
 #      ; cc_profile = []
 #      ; architecture = "amd64"
 #      ; model = "default"
 #      ; int_size = 63
 #      ; word_size = 64
 #      ; system = "linux"
-#      ; asm = [ "x86_64-linux-gnu-as" ]
+#      ; asm = [ "as" ]
 #      ; asm_cfi_supported = true
 #      ; with_frame_pointers = false
 #      ; ext_exe = ""
@@ -136,24 +100,39 @@ $ /usr/bin/ocamlc.opt -config > /tmp/dune_a12aa4_output
 #      ; flambda = false
 #      ; spacetime = false
 #      ; safe_string = true
-#      ; exec_magic_number = "Caml1999X030"
-#      ; cmi_magic_number = "Caml1999I030"
-#      ; cmo_magic_number = "Caml1999O030"
-#      ; cma_magic_number = "Caml1999A030"
-#      ; cmx_magic_number = "Caml1999Y030"
-#      ; cmxa_magic_number = "Caml1999Z030"
-#      ; ast_impl_magic_number = "Caml1999M030"
-#      ; ast_intf_magic_number = "Caml1999N030"
-#      ; cmxs_magic_number = "Caml1999D030"
-#      ; cmt_magic_number = "Caml1999T030"
+#      ; exec_magic_number = "Caml1999X032"
+#      ; cmi_magic_number = "Caml1999I032"
+#      ; cmo_magic_number = "Caml1999O032"
+#      ; cma_magic_number = "Caml1999A032"
+#      ; cmx_magic_number = "Caml1999Y032"
+#      ; cmxa_magic_number = "Caml1999Z032"
+#      ; ast_impl_magic_number = "Caml1999M032"
+#      ; ast_intf_magic_number = "Caml1999N032"
+#      ; cmxs_magic_number = "Caml1999D032"
+#      ; cmt_magic_number = "Caml1999T032"
 #      ; natdynlink_supported = true
 #      ; supports_shared_libraries = true
 #      ; windows_unicode = false
 #      }
 #  }
-$ (cd _build/default/test && ./rubikaml.exe)
-> What should I do ?
-> 1 - random scramble
-> 2 - given scramble
-> Fatal error: exception End_of_file
-[2]
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamldep.opt -modules -impl test/roux_pattern.ml) > _build/default/test/.rubikaml.eobjs/dune__exe__Roux_pattern.impl.d
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamldep.opt -modules -impl lib/scramble.ml) > _build/default/lib/.local_deps.objs/local_deps__Scramble.impl.d
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlc.opt -w -40 -g -bin-annot -I lib/.local_deps.objs/byte -I /home/adriroot/.opam/default/lib/graphics -no-alias-deps -open Local_deps -o lib/.local_deps.objs/byte/local_deps__Scramble.cmo -c -impl lib/scramble.ml)
+> File "lib/scramble.ml", line 11, characters 24-35:
+> 11 | let scramble (c:cube) ?(print=false) : unit =
+>                              ^^^^^^^^^^^
+> Warning 16 [unerasable-optional-argument]: this optional argument cannot be erased.
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlc.opt -w -40 -g -bin-annot -I lib/.local_deps.objs/byte -I /home/adriroot/.opam/default/lib/graphics -no-alias-deps -open Local_deps -o lib/.local_deps.objs/byte/local_deps__Rudimentary_parser.cmo -c -impl lib/rudimentary_parser.ml)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -I lib/.local_deps.objs/byte -I lib/.local_deps.objs/native -I /home/adriroot/.opam/default/lib/graphics -intf-suffix .ml -no-alias-deps -open Local_deps -o lib/.local_deps.objs/native/local_deps__Scramble.cmx -c -impl lib/scramble.ml)
+> File "lib/scramble.ml", line 11, characters 24-35:
+> 11 | let scramble (c:cube) ?(print=false) : unit =
+>                              ^^^^^^^^^^^
+> Warning 16 [unerasable-optional-argument]: this optional argument cannot be erased.
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlc.opt -w -40 -g -bin-annot -I test/.rubikaml.eobjs/byte -I /home/adriroot/.opam/default/lib/graphics -I lib/.local_deps.objs/byte -no-alias-deps -open Dune__exe -o test/.rubikaml.eobjs/byte/dune__exe__Rubikaml.cmi -c -intf test/rubikaml.mli)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlc.opt -w -40 -g -bin-annot -I test/.rubikaml.eobjs/byte -I /home/adriroot/.opam/default/lib/graphics -I lib/.local_deps.objs/byte -no-alias-deps -open Dune__exe -o test/.rubikaml.eobjs/byte/dune__exe__Roux_pattern.cmi -c -intf test/roux_pattern.mli)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -I lib/.local_deps.objs/byte -I lib/.local_deps.objs/native -I /home/adriroot/.opam/default/lib/graphics -intf-suffix .ml -no-alias-deps -open Local_deps -o lib/.local_deps.objs/native/local_deps__Rudimentary_parser.cmx -c -impl lib/rudimentary_parser.ml)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -a -o lib/local_deps.cmxa lib/.local_deps.objs/native/local_deps.cmx lib/.local_deps.objs/native/local_deps__Types.cmx lib/.local_deps.objs/native/local_deps__Tools.cmx lib/.local_deps.objs/native/local_deps__Simulator.cmx lib/.local_deps.objs/native/local_deps__Solver.cmx lib/.local_deps.objs/native/local_deps__Scramble.cmx lib/.local_deps.objs/native/local_deps__Rudimentary_parser.cmx lib/.local_deps.objs/native/local_deps__Graphics2d.cmx lib/.local_deps.objs/native/local_deps__Entry_reader.cmx)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -I test/.rubikaml.eobjs/byte -I test/.rubikaml.eobjs/native -I /home/adriroot/.opam/default/lib/graphics -I lib/.local_deps.objs/byte -I lib/.local_deps.objs/native -intf-suffix .ml -no-alias-deps -open Dune__exe -o test/.rubikaml.eobjs/native/dune__exe__Rubikaml.cmx -c -impl test/rubikaml.ml)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -I test/.rubikaml.eobjs/byte -I test/.rubikaml.eobjs/native -I /home/adriroot/.opam/default/lib/graphics -I lib/.local_deps.objs/byte -I lib/.local_deps.objs/native -intf-suffix .ml -no-alias-deps -open Dune__exe -o test/.rubikaml.eobjs/native/dune__exe__Roux_pattern.cmx -c -impl test/roux_pattern.ml)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -o test/rubikaml.exe /home/adriroot/.opam/default/lib/graphics/graphics.cmxa -I /home/adriroot/.opam/default/lib/graphics lib/local_deps.cmxa test/.rubikaml.eobjs/native/dune__exe.cmx test/.rubikaml.eobjs/native/dune__exe__Rubikaml.cmx)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -o test/roux_pattern.exe /home/adriroot/.opam/default/lib/graphics/graphics.cmxa -I /home/adriroot/.opam/default/lib/graphics lib/local_deps.cmxa test/.rubikaml.eobjs/native/dune__exe.cmx test/.rubikaml.eobjs/native/dune__exe__Roux_pattern.cmx)

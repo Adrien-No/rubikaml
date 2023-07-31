@@ -15,5 +15,11 @@ module Scramble = Local_deps__Scramble
 (** @canonical Local_deps.Simulator *)
 module Simulator = Local_deps__Simulator
 
+(** @canonical Local_deps.Solver *)
+module Solver = Local_deps__Solver
+
+(** @canonical Local_deps.Tools *)
+module Tools = Local_deps__Tools
+
 (** @canonical Local_deps.Types *)
 module Types = Local_deps__Types

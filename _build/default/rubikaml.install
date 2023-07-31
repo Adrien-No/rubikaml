@@ -6,3 +6,6 @@ lib: [
 bin: [
   "_build/install/default/bin/rubikaml"
 ]
+doc: [
+  "_build/install/default/doc/rubikaml/README.md"
+]

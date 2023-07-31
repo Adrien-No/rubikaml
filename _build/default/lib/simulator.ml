@@ -1,5 +1,9 @@
 open Types
 
+let center_nb = 6
+let edges_nb = 12
+let corners_nb = 8
+
 (* get first/second/third of a 3-uplet *)
 let f3u = function (x,_,_) -> x
 let s3u = function (_,y,_) -> y
@@ -14,6 +18,7 @@ let swap_corner' = function x,y,z -> z,x,y
 
  (* orientation and notation priority (decreasing): Front, Back, Up, Down, Left, Right *)
 let solved () : cube =
+  (** [solved()] returns a fresh cube completed. *)
   let cube = {
     centers = [|Green ; Blue ; White ; Yellow ; Orange ; Red|];
     edges = [|Green,White;Green,Red;Green,Yellow;Green,Orange ; Blue,White;Blue,Orange;Blue,Yellow;Blue,Red ; White,Red;White,Orange ; Yellow,Red;Yellow,Orange |];
@@ -21,8 +26,24 @@ let solved () : cube =
   }
   in cube
 
+let fresh_pattern () : matching_cube =
+  (** [fresh_pattern ()] returns a fresh matching_cube that match every cube for now. *)
+  {
+    centers_opt = Array.make center_nb None;
+    edges_opt = Array.make edges_nb None;
+    corners_opt = Array.make corners_nb None;
+  }
+
+let copy (c:cube) : cube =
+  (** [copy c] returns a copy of [c] that is a fresh cube containing the same elements as c.*)
+  {
+    centers = Array.copy c.centers;
+    edges = Array.copy c.edges;
+    corners = Array.copy c.corners;
+  }
+
 let get_face c : color -> color array array = function
-  (* each face is returned as if we were staring it by rotating the cube by : *)
+  (** each face is returned as if we were staring it by rotating the cube by : *)
   (* - nothing for Green *)
   (* - y for Red *)
   (* - y' for Orange *)
@@ -93,13 +114,14 @@ let move_to_string : move -> string = function
   | L' -> "L'"
   | R -> "R"
   | R' -> "R'"
+  | _ -> failwith "TypeError"
 
 let print_sequence (s:sequence) : unit =
   List.iter (fun move -> move_to_string move |> Printf.printf "%s ") s; Printf.printf "\n"
-(* ==========================================================================================================================================  *)
+(* ===========================================================================================================================================  *)
 
 let move_cube (c:cube) : move->unit = function
-
+  (** [move_cube c m] executes the move m on the cube c. *)
     F -> let saved_edge,saved_corner = c.edges.(3), c.corners.(3) in for i = 3 downto 1 do c.corners.(i) <- swapst3u c.corners.(i-1); c.edges.(i) <- c.edges.(i-1) done; c.corners.(0) <- swapst3u saved_corner; c.edges.(0) <- saved_edge
 
   | F' -> let saved_edge,saved_corner = c.edges.(0), c.corners.(0) in for i = 0 to 2 do c.corners.(i) <- swapst3u c.corners.(i+1); c.edges.(i) <- c.edges.(i+1) done; c.corners.(3) <- swapst3u saved_corner; c.edges.(3) <- saved_edge
@@ -124,7 +146,16 @@ let move_cube (c:cube) : move->unit = function
 
   | R' -> let saved_corner,saved_edge = c.corners.(4),c.edges.(8) in c.corners.(4) <- swapfs3u c.corners.(7) ; c.edges.(8) <- c.edges.(7);c.corners.(7) <- swapfs3u c.corners.(2) ; c.edges.(7) <- c.edges.(10);c.corners.(2) <- swapfs3u c.corners.(1) ; c.edges.(10) <- c.edges.(1);c.corners.(1) <- swapfs3u saved_corner ; c.edges.(1) <- saved_edge
 
+  | _ -> failwith "TypeError"
+
+let moved_cube (c:cube) (m:move) : cube =
+  (** [moved_cube c m] returns a copy of c with the move m executed. *)
+  let c' = copy c in
+  move_cube c' m;
+  c'
+
 (* ==========================================================================================================================================  *)
+
 
 let exec_sequence (c:cube) : sequence -> unit =
   List.iter (move_cube c)

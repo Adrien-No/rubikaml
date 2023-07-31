@@ -46,4 +46,5 @@ let ask_action cube =
     | "2" -> apply_scramble cube (read_seq_entry())
     | _ -> Printf.printf "%s" "I don't understand\n"; understand (read_line())
   in
+  flush stdout;
   understand (read_line())
