@@ -1,13 +1,13 @@
-# dune build --profile release
+# dune build
 # OCAMLPARAM: unset
 # Shared cache: disabled
 # Workspace root: /home/adriroot/Nextcloud/info/prog/rubikaml
 # Auto-detected concurrency: 16
-$ /home/adriroot/.opam/default/bin/ocamlc.opt -config > /tmp/dune_32a001_output
+$ /home/adriroot/.opam/default/bin/ocamlc.opt -config > /tmp/dune_b45e1e_output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
-#  ; profile = Release
+#  ; profile = Dev
 #  ; merlin = true
 #  ; for_host = None
 #  ; fdo_target_exe = None
@@ -115,24 +115,12 @@ $ /home/adriroot/.opam/default/bin/ocamlc.opt -config > /tmp/dune_32a001_output
 #      ; windows_unicode = false
 #      }
 #  }
-$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamldep.opt -modules -impl test/roux_pattern.ml) > _build/default/test/.rubikaml.eobjs/dune__exe__Roux_pattern.impl.d
-$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamldep.opt -modules -impl lib/scramble.ml) > _build/default/lib/.local_deps.objs/local_deps__Scramble.impl.d
-$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlc.opt -w -40 -g -bin-annot -I lib/.local_deps.objs/byte -I /home/adriroot/.opam/default/lib/graphics -no-alias-deps -open Local_deps -o lib/.local_deps.objs/byte/local_deps__Scramble.cmo -c -impl lib/scramble.ml)
-> File "lib/scramble.ml", line 11, characters 24-35:
-> 11 | let scramble (c:cube) ?(print=false) : unit =
->                              ^^^^^^^^^^^
-> Warning 16 [unerasable-optional-argument]: this optional argument cannot be erased.
-$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlc.opt -w -40 -g -bin-annot -I lib/.local_deps.objs/byte -I /home/adriroot/.opam/default/lib/graphics -no-alias-deps -open Local_deps -o lib/.local_deps.objs/byte/local_deps__Rudimentary_parser.cmo -c -impl lib/rudimentary_parser.ml)
-$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -I lib/.local_deps.objs/byte -I lib/.local_deps.objs/native -I /home/adriroot/.opam/default/lib/graphics -intf-suffix .ml -no-alias-deps -open Local_deps -o lib/.local_deps.objs/native/local_deps__Scramble.cmx -c -impl lib/scramble.ml)
-> File "lib/scramble.ml", line 11, characters 24-35:
-> 11 | let scramble (c:cube) ?(print=false) : unit =
->                              ^^^^^^^^^^^
-> Warning 16 [unerasable-optional-argument]: this optional argument cannot be erased.
-$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlc.opt -w -40 -g -bin-annot -I test/.rubikaml.eobjs/byte -I /home/adriroot/.opam/default/lib/graphics -I lib/.local_deps.objs/byte -no-alias-deps -open Dune__exe -o test/.rubikaml.eobjs/byte/dune__exe__Rubikaml.cmi -c -intf test/rubikaml.mli)
-$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlc.opt -w -40 -g -bin-annot -I test/.rubikaml.eobjs/byte -I /home/adriroot/.opam/default/lib/graphics -I lib/.local_deps.objs/byte -no-alias-deps -open Dune__exe -o test/.rubikaml.eobjs/byte/dune__exe__Roux_pattern.cmi -c -intf test/roux_pattern.mli)
-$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -I lib/.local_deps.objs/byte -I lib/.local_deps.objs/native -I /home/adriroot/.opam/default/lib/graphics -intf-suffix .ml -no-alias-deps -open Local_deps -o lib/.local_deps.objs/native/local_deps__Rudimentary_parser.cmx -c -impl lib/rudimentary_parser.ml)
-$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -a -o lib/local_deps.cmxa lib/.local_deps.objs/native/local_deps.cmx lib/.local_deps.objs/native/local_deps__Types.cmx lib/.local_deps.objs/native/local_deps__Tools.cmx lib/.local_deps.objs/native/local_deps__Simulator.cmx lib/.local_deps.objs/native/local_deps__Solver.cmx lib/.local_deps.objs/native/local_deps__Scramble.cmx lib/.local_deps.objs/native/local_deps__Rudimentary_parser.cmx lib/.local_deps.objs/native/local_deps__Graphics2d.cmx lib/.local_deps.objs/native/local_deps__Entry_reader.cmx)
-$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -I test/.rubikaml.eobjs/byte -I test/.rubikaml.eobjs/native -I /home/adriroot/.opam/default/lib/graphics -I lib/.local_deps.objs/byte -I lib/.local_deps.objs/native -intf-suffix .ml -no-alias-deps -open Dune__exe -o test/.rubikaml.eobjs/native/dune__exe__Rubikaml.cmx -c -impl test/rubikaml.ml)
-$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -I test/.rubikaml.eobjs/byte -I test/.rubikaml.eobjs/native -I /home/adriroot/.opam/default/lib/graphics -I lib/.local_deps.objs/byte -I lib/.local_deps.objs/native -intf-suffix .ml -no-alias-deps -open Dune__exe -o test/.rubikaml.eobjs/native/dune__exe__Roux_pattern.cmx -c -impl test/roux_pattern.ml)
-$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -o test/rubikaml.exe /home/adriroot/.opam/default/lib/graphics/graphics.cmxa -I /home/adriroot/.opam/default/lib/graphics lib/local_deps.cmxa test/.rubikaml.eobjs/native/dune__exe.cmx test/.rubikaml.eobjs/native/dune__exe__Rubikaml.cmx)
-$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w -40 -g -o test/roux_pattern.exe /home/adriroot/.opam/default/lib/graphics/graphics.cmxa -I /home/adriroot/.opam/default/lib/graphics lib/local_deps.cmxa test/.rubikaml.eobjs/native/dune__exe.cmx test/.rubikaml.eobjs/native/dune__exe__Roux_pattern.cmx)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamldep.opt -modules -impl lib/solver.ml) > _build/default/lib/.local_deps.objs/local_deps__Solver.impl.d
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I lib/.local_deps.objs/byte -I /home/adriroot/.opam/default/lib/graphics -no-alias-deps -opaque -open Local_deps -o lib/.local_deps.objs/byte/local_deps__Solver.cmo -c -impl lib/solver.ml)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o lib/local_deps.cma lib/.local_deps.objs/byte/local_deps.cmo lib/.local_deps.objs/byte/local_deps__Types.cmo lib/.local_deps.objs/byte/local_deps__Tools.cmo lib/.local_deps.objs/byte/local_deps__Simulator.cmo lib/.local_deps.objs/byte/local_deps__Solver.cmo lib/.local_deps.objs/byte/local_deps__Scramble.cmo lib/.local_deps.objs/byte/local_deps__Rudimentary_parser.cmo lib/.local_deps.objs/byte/local_deps__Graphics2d.cmo lib/.local_deps.objs/byte/local_deps__Entry_reader.cmo)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I lib/.local_deps.objs/byte -I lib/.local_deps.objs/native -I /home/adriroot/.opam/default/lib/graphics -intf-suffix .ml -no-alias-deps -opaque -open Local_deps -o lib/.local_deps.objs/native/local_deps__Solver.cmx -c -impl lib/solver.ml)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o lib/local_deps.cmxa lib/.local_deps.objs/native/local_deps.cmx lib/.local_deps.objs/native/local_deps__Types.cmx lib/.local_deps.objs/native/local_deps__Tools.cmx lib/.local_deps.objs/native/local_deps__Simulator.cmx lib/.local_deps.objs/native/local_deps__Solver.cmx lib/.local_deps.objs/native/local_deps__Scramble.cmx lib/.local_deps.objs/native/local_deps__Rudimentary_parser.cmx lib/.local_deps.objs/native/local_deps__Graphics2d.cmx lib/.local_deps.objs/native/local_deps__Entry_reader.cmx)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -shared -linkall -I lib -o lib/local_deps.cmxs lib/local_deps.cmxa)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o bin/main.exe /home/adriroot/.opam/default/lib/graphics/graphics.cmxa -I /home/adriroot/.opam/default/lib/graphics lib/local_deps.cmxa bin/.main.eobjs/native/dune__exe__Main.cmx)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/rubikaml.exe /home/adriroot/.opam/default/lib/graphics/graphics.cmxa -I /home/adriroot/.opam/default/lib/graphics lib/local_deps.cmxa test/.rubikaml.eobjs/native/dune__exe.cmx test/.rubikaml.eobjs/native/dune__exe__Rubikaml.cmx)
+$ (cd _build/default && /home/adriroot/.opam/default/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/roux_pattern.exe /home/adriroot/.opam/default/lib/graphics/graphics.cmxa -I /home/adriroot/.opam/default/lib/graphics lib/local_deps.cmxa test/.rubikaml.eobjs/native/dune__exe.cmx test/.rubikaml.eobjs/native/dune__exe__Roux_pattern.cmx)

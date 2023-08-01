@@ -1,10 +1,11 @@
 open Types
 open Simulator
+open Tools
 
 let k = 10000
 
+(** Compare a cube with a cube-pattern ie the configuration that we wants.*)
 let cube_matching (pattern:matching_cube) (cube:cube) : bool =
-  (** Compare a cube with a cube-pattern ie the configuration that we wants.*)
   let array_test = function
     None -> fun _ -> true
   | Some x -> (=)x
@@ -13,9 +14,10 @@ let cube_matching (pattern:matching_cube) (cube:cube) : bool =
   && Array.for_all2 array_test pattern.edges_opt cube.edges
   && Array.for_all2 array_test pattern.corners_opt cube.corners
 
+(** Pretty similar as cube_matching but returns the number of missplaced cubies.
+    Slower at returning 0 than cube_matching at returning false. *)
 let cube_matching_range (pattern:matching_cube) (cube:cube) : int =
-  (** Pretty similar as cube_matching but returns the number of missplaced cubies. *)
-  (** Slower at returning 0 than cube_matching at returning false. *)
+
   let array_test = function
     None -> fun _ -> 0
   | Some x -> fun y -> if x = y then 0 else 1
@@ -24,15 +26,31 @@ let cube_matching_range (pattern:matching_cube) (cube:cube) : int =
   + Array.fold_left (fun init (x,y) -> init + array_test x y) 0 (Array.combine pattern.edges_opt cube.edges)
   + Array.fold_left (fun init (x,y) -> init + array_test x y) 0 (Array.combine pattern.corners_opt cube.corners)
 
+(** Returns true iff the cubies of pattern are at same position in c than in c' ie they have same chances to do the pattern.
+    Used to test if a move can help getting the pattern. *)
+let unchanged_pattern_cubies (pattern:matching_cube) (c:cube) (c':cube) : bool =
+  let array_test = function
+      None -> fun _ -> fun _ -> true
+    | Some _ -> currying2 compare_cubie
+  in
+  let pattern,c,c' = cubify_matching_cube pattern, cubify_cube c, cubify_cube c' in
+  if for_all3 array_test pattern.t2_m c.t2 c'.t2
+  && for_all3 array_test pattern.t3_m c.t3 c'.t3
+  && for_all3 array_test pattern.t1_m c.t1 c'.t1
+  then ((* Printf.printf "| "; *)true)
+  else ((* Printf.printf ". "; *)false)
+
 let solve (cube:cube) (pattern:matching_cube) : cube*sequence =
 
   let rec beam_search : (cube*sequence) list -> cube*sequence = function
       [] -> failwith "not found"
     | k_best ->
+      k_best |> List.hd |> snd |> List.rev |> print_sequence;
       if cube_matching pattern (fst (List.hd k_best)) then let cube,seq = List.hd k_best in cube,List.rev seq else
 
       let get_next (c,seq:cube*sequence) : (cube*sequence) list =
         [F ; F' ; B ; B' ; U ; U' ; D ; D' ; L ; L' ; R ; R']
+        |> List.filter (fun m -> unchanged_pattern_cubies pattern cube (moved_cube cube m) |> not)
         |> List.map (fun m -> moved_cube c m, m::seq)
       in
 
@@ -50,9 +68,6 @@ let solve (cube:cube) (pattern:matching_cube) : cube*sequence =
 (*     [F ; F' ; B ; B' ; U ; U' ; D ; D' ; L ; L' ; R ; R'] *)
 (*     |> List.map (moved_cube c) *)
 (*     |> List.map (cube_matching_range) *)
-
-
-(* ZIPER POUR GARDER L'INFO DU MOUVEMENT EFFECTUÉ *)
 
 
 (* let match_face f pattern : bool = (\* [|[|false;White;false|];[|White;false;White|];[|false;White;false|]|] *\) *)

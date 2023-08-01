@@ -5,6 +5,8 @@ type center = color
 type edge = color*color
 type corner = color*color*color
 
+type cubie = Center of center | Edge of edge | Corner of corner
+
 type cube =
   (* A classical reprensentation of a rubik's cube. *)
   {
@@ -20,6 +22,20 @@ type matching_cube =
     centers_opt : center option array;
     edges_opt : edge option array;
     corners_opt : corner option array;
+  }
+
+type cubies =
+  {
+    t1 : cubie array;
+    t2 : cubie array;
+    t3 : cubie array;
+  }
+
+type matching_cubies =
+  {
+    t1_m : cubie option array;
+    t2_m : cubie option array;
+    t3_m : cubie option array;
   }
 
 type face = color array array (* 3x3 *)

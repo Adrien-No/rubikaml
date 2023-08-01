@@ -1,1 +1,1 @@
-lib/solver.ml: Array List Simulator Types
+lib/solver.ml: Array List Simulator Tools Types

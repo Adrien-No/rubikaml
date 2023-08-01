@@ -17,8 +17,10 @@ let swap_corner = function x,y,z -> y,z,x
 let swap_corner' = function x,y,z -> z,x,y
 
  (* orientation and notation priority (decreasing): Front, Back, Up, Down, Left, Right *)
+
+(** [solved()] returns a fresh cube completed. *)
 let solved () : cube =
-  (** [solved()] returns a fresh cube completed. *)
+
   let cube = {
     centers = [|Green ; Blue ; White ; Yellow ; Orange ; Red|];
     edges = [|Green,White;Green,Red;Green,Yellow;Green,Orange ; Blue,White;Blue,Orange;Blue,Yellow;Blue,Red ; White,Red;White,Orange ; Yellow,Red;Yellow,Orange |];
@@ -26,24 +28,24 @@ let solved () : cube =
   }
   in cube
 
+(** [fresh_pattern ()] returns a fresh matching_cube that match every cube for now. *)
 let fresh_pattern () : matching_cube =
-  (** [fresh_pattern ()] returns a fresh matching_cube that match every cube for now. *)
   {
     centers_opt = Array.make center_nb None;
     edges_opt = Array.make edges_nb None;
     corners_opt = Array.make corners_nb None;
   }
 
+(** [copy c] returns a copy of [c] that is a fresh cube containing the same elements as c.*)
 let copy (c:cube) : cube =
-  (** [copy c] returns a copy of [c] that is a fresh cube containing the same elements as c.*)
   {
     centers = Array.copy c.centers;
     edges = Array.copy c.edges;
     corners = Array.copy c.corners;
   }
 
+(** each face is returned as if we were staring it by rotating the cube by : *)
 let get_face c : color -> color array array = function
-  (** each face is returned as if we were staring it by rotating the cube by : *)
   (* - nothing for Green *)
   (* - y for Red *)
   (* - y' for Orange *)
@@ -114,14 +116,14 @@ let move_to_string : move -> string = function
   | L' -> "L'"
   | R -> "R"
   | R' -> "R'"
-  | _ -> failwith "TypeError"
+  (* | _ -> failwith "TypeError" *)
 
 let print_sequence (s:sequence) : unit =
   List.iter (fun move -> move_to_string move |> Printf.printf "%s ") s; Printf.printf "\n"
 (* ===========================================================================================================================================  *)
 
+(** [move_cube c m] executes the move m on the cube c. *)
 let move_cube (c:cube) : move->unit = function
-  (** [move_cube c m] executes the move m on the cube c. *)
     F -> let saved_edge,saved_corner = c.edges.(3), c.corners.(3) in for i = 3 downto 1 do c.corners.(i) <- swapst3u c.corners.(i-1); c.edges.(i) <- c.edges.(i-1) done; c.corners.(0) <- swapst3u saved_corner; c.edges.(0) <- saved_edge
 
   | F' -> let saved_edge,saved_corner = c.edges.(0), c.corners.(0) in for i = 0 to 2 do c.corners.(i) <- swapst3u c.corners.(i+1); c.edges.(i) <- c.edges.(i+1) done; c.corners.(3) <- swapst3u saved_corner; c.edges.(3) <- saved_edge
@@ -146,13 +148,69 @@ let move_cube (c:cube) : move->unit = function
 
   | R' -> let saved_corner,saved_edge = c.corners.(4),c.edges.(8) in c.corners.(4) <- swapfs3u c.corners.(7) ; c.edges.(8) <- c.edges.(7);c.corners.(7) <- swapfs3u c.corners.(2) ; c.edges.(7) <- c.edges.(10);c.corners.(2) <- swapfs3u c.corners.(1) ; c.edges.(10) <- c.edges.(1);c.corners.(1) <- swapfs3u saved_corner ; c.edges.(1) <- saved_edge
 
-  | _ -> failwith "TypeError"
+  (* | _ -> failwith "TypeError" *)
 
+(** [moved_cube c m] returns a copy of c with the move m executed. *)
 let moved_cube (c:cube) (m:move) : cube =
-  (** [moved_cube c m] returns a copy of c with the move m executed. *)
   let c' = copy c in
   move_cube c' m;
   c'
+
+
+(* ================ sorting colors ================  *)
+
+(** Same as compare but for colors, using the following descending priority : Green / Blue / White / Yellow / Orange / Red. *)
+let compare_color c1 c2 =
+  (* Note that it doesn't exists cubies with color-distance <= 1.*)
+  let weigthed = function
+      Green -> 6
+    | Blue -> 5
+    | White -> 4
+    | Yellow -> 3
+    | Orange -> 2
+    | Red -> 1
+  in
+  compare (weigthed c1) (weigthed c2)
+
+(* let normalize_cubie : cubie -> cubie = function *)
+(*   (\** sort colors of a cubie depending of representation priority : (descending) Green / Blue / White / Yellow / Orange / Red *\) *)
+(*     Center c -> Center c *)
+(*   | Edge c1,c2 -> Edge  *)
+
+(* let compare_cubies c1 c2 = function *)
+
+let cubify_center = fun c -> Center c
+let cubify_center_opt : center option -> cubie option = function Some c -> Some (Center c) | _ -> None (* failwith "TypeError" *)
+let cubify_edge = fun e -> Edge e
+let cubify_edge_opt : edge option -> cubie option = function Some c -> Some (Edge c) | _ -> None (* failwith "TypeError" *)
+let cubify_corner = fun c -> Corner c
+let cubify_corner_opt : corner option -> cubie option = function Some c -> Some (Corner c) | _ -> None (* failwith "TypeError" *)
+
+let cubify_cube (cube:cube) : cubies =
+  {
+    t1 = Array.map cubify_center cube.centers;
+    t2 = Array.map cubify_edge cube.edges;
+    t3 = Array.map cubify_corner cube.corners;
+  }
+
+let cubify_matching_cube (mcube:matching_cube) : matching_cubies =
+  {
+    t1_m = (Array.map cubify_center_opt mcube.centers_opt:cubie option array);
+    t2_m = Array.map cubify_edge_opt mcube.edges_opt;
+    t3_m = (Array.map cubify_corner_opt mcube.corners_opt:cubie option array);
+  }
+let compare_cubie : cubie * cubie -> bool =
+  let normalize_cubie = function
+      Center c -> Center c
+    | Edge c -> let sorted = List.sort compare_color [fst c; snd c] in
+      Edge (List.nth sorted 1, List.nth sorted 0)
+    | Corner c -> let sorted = List.sort compare_color [f3u c;s3u c; t3u c] in
+      Corner(List.nth sorted 2, List.nth sorted 1, List.nth sorted 0)
+  in
+  function
+    c1,c2 -> normalize_cubie c1 = normalize_cubie c2
+
+(* ================================================== *)
 
 (* ==========================================================================================================================================  *)
 
