@@ -1,0 +1,4 @@
+(executable
+ (public_name rubikaml)
+ (name main)
+ (libraries lib))

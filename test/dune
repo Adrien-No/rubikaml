@@ -1,0 +1,5 @@
+(test
+ ; (name test_print_graph)
+ (name test_cayley)
+ (libraries lib)
+)

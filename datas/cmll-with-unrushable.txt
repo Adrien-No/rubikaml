@@ -1,0 +1,42 @@
+O_adj_swap : R U R' F' R U R' U' R' F R R U' R'
+O_diag_swap : F R U' R' U' R U R' F' R U R' U' R' F R F'
+H_2cols : R U U R' U' R U R' U' R U' R'
+H_2rows : F R U R' U' R U R' U' R U R' U' F'
+H_rcol : U R U' U' R' R' F R F' U U R' F R F'
+H_brow :
+Pi_rbar : F R U R' U' R U R' U' F'
+Pi_lbar : U' R' U' R' F R F' R U' R' U U R
+Pi_fslash : R U U R' U' R U R' U' U' R' F R F'
+Pi_bslash : U F R' F' R U U R U' R' U R U' U' R'
+Pi_x : U' R' F R U F U' R U R' U' F'
+Pi_cols :
+S_lbar : U R U R' U R U U R'
+S_rbar : U' R U R' U R' F R F' R U' U' R'
+S_x : U L' U U L U' U' L F' L' F
+S_cols : U R U R' U' R' F R F' R U R' U R U' U'R'
+S_bslash : U R U' L' U R' U' L
+S_fslash : U F R' F' R U U R U' U' R'
+A_lbar : R' U' R U' R' U R' F R F' U R
+A_rbar : U R' U' R U' R' U' U' R
+A_x : U' R U' U' R' U U R' F R F'
+A_cols : U' R R D R' U R D' R' U R' U' R U' R'
+A_fslash : U' L' U R U' L U R
+A_bslash : U' F' L F L' U' U' L' U U L
+U_fslash : U U R R D R' U U R D' R' U U R'
+U_bslash : R' R' D' R U U R' D R U U R
+U_frow : R' R' F U' F U F F R R U' R' F R
+U_rows : U' F R R D R' U R D' R' R' U' F'
+U_x :
+U_brow : U' F R U R' U' F'
+L_mirror : U U F R U' R' U' R U R' F'
+L_inverse : U U F R' F' R U R U' R'
+L_pure : R U U R' U' R U R' U' R U R' U' R U' R'
+L_fcomm : U U R U U R D R' U U R D' R' R'
+L_diag : U U R U' U' R' R' F R F' R U' U' R'
+L_bcomm : U R' U U R' D' R U U R' D R R
+T_lbar : U' R U R' U' R' F R F'
+T_rbar : U L' U' L U L F' L' F
+T_rows : F R' F R R U' R' U' R U R' F F
+T_frow :
+T_brow :
+T_cols :

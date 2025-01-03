@@ -1,0 +1,8 @@
+lib: [
+  "_build/install/default/lib/rubikaml/META"
+  "_build/install/default/lib/rubikaml/dune-package"
+  "_build/install/default/lib/rubikaml/opam"
+]
+bin: [
+  "_build/install/default/bin/rubikaml"
+]

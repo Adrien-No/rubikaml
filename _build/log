@@ -1,0 +1,18 @@
+# dune test --profile release
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /home/adriroot/.cache/dune/db
+# Workspace root: /home/adriroot/Nextcloud/info/rubikaml
+# Auto-detected concurrency: 16
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Release
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /usr/bin/ocamlc.opt -config > /tmp/dune_c2e573_output
+$ (cd _build/default/test && ./test_cayley.exe)
+> /home/adriroot/Nextcloud/info/rubikaml/_build/default/test
