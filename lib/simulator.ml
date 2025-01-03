@@ -111,11 +111,11 @@ let to_string (c: cube) : string = (* can generalize to "to_facets" if needed *)
 let to_cmll (c : cube) : string =
   let f = string_of_color true in
   let sep = " " in
-                       f c.bul.fst^f c.bu.fst^f c.bul.fst^
-  "\n"^f c.bul.trd^sep^f c.bul.snd^f c.bu.snd^f c.bur.snd^sep^f c.bur.trd^
-  "\n"^f c.ul.snd ^sep^f c.ul.fst ^f Y       ^f c.ur.fst ^sep^f c.ur.snd ^
-  "\n"^f c.ful.trd^sep^f c.ful.snd^f c.fu.snd^f c.fur.snd^sep^f c.fur.trd^
-  "\n"^                f c.ful.fst^f c.fu.fst^f c.fur.fst
+                        f c.bul.fst^f c.bu.fst^f c.bur.fst^
+  "\n"^f c.bul.trd^sep ^f c.bul.snd^f c.bu.snd^f c.bur.snd^ sep^f c.bur.trd^
+  "\n"^f c.ul.snd ^sep ^f c.ul.fst ^f Y       ^f c.ur.fst ^ sep^f c.ur.snd ^
+  "\n"^f c.ful.trd^sep ^f c.ful.snd^f c.fu.snd^f c.fur.snd^ sep^f c.fur.trd^
+  "\n"^                 f c.ful.fst^f c.fu.fst^f c.fur.fst
 
 let cache = Hashtbl.create 16
 let id = ref 0

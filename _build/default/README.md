@@ -12,6 +12,8 @@ By doing so, we could learn more intuitively these algorithms.
 ### Improvement
 
 #### short-term 
+- /!\ correct print of cmll
+
 - add smartly edges between CMLL configurations to improve
 - add algorithms for missing CMLLs (H_brow, Pi_cols, U_x, T_frow, T_brow, T_cols) which fastest agls require fw moves than aren't yet implemented.
 - finally, contract paths (e.g u->r->u'->r' became just --u r u' r'-->)

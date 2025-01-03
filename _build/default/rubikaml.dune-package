@@ -1,4 +1,4 @@
 (lang dune 3.16)
 (name rubikaml)
-(sections (lib .) (bin ../../bin))
-(files (lib (META dune-package opam)) (bin (rubikaml)))
+(sections (lib .) (bin ../../bin) (doc ../../doc/rubikaml))
+(files (lib (META dune-package opam)) (bin (rubikaml)) (doc (README.md)))

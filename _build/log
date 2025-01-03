@@ -13,6 +13,6 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /usr/bin/ocamlc.opt -config > /tmp/dune_c2e573_output
+$ /usr/bin/ocamlc.opt -config > /tmp/dune_ea6aa6_output
 $ (cd _build/default/test && ./test_cayley.exe)
 > /home/adriroot/Nextcloud/info/rubikaml/_build/default/test
